@@ -9,10 +9,7 @@ from sklearn.model_selection import train_test_split as sk_split
 
 
 def rating_metrics(predictions: list) -> dict:
-    """
-    predictions: list of (true_rating, predicted_rating) tuples
-    Returns RMSE and MAE.
-    """
+    
     y_true = np.array([p[0] for p in predictions])
     y_pred = np.array([p[1] for p in predictions])
     rmse = np.sqrt(np.mean((y_true - y_pred) ** 2))
@@ -23,12 +20,7 @@ def rating_metrics(predictions: list) -> dict:
 def precision_recall_f1_at_k(
     recommended_ids: list, relevant_ids: set, k: int = 10
 ) -> dict:
-    """
-    Precision@K, Recall@K, F1@K for a single user.
-
-    recommended_ids : ordered list of recommended movieIds
-    relevant_ids    : set of movieIds the user actually rated highly (≥ threshold)
-    """
+    
     top_k = recommended_ids[:k]
     hits = len(set(top_k) & relevant_ids)
 
@@ -47,7 +39,6 @@ def precision_recall_f1_at_k(
 
 
 def evaluate_cf_model(cf_model, ratings: pd.DataFrame) -> dict:
-    """Evaluate collaborative filter on its internal test set."""
     return cf_model.evaluate()
 
 
@@ -61,12 +52,7 @@ def evaluate_ranking(
     model_type: str = "hybrid",
     alpha: float = 0.7,
 ) -> dict:
-    """
-    Evaluate Precision@K, Recall@K, F1@K averaged over sampled users.
-
-    model_type: 'hybrid', 'cf', or 'cb'
-    """
-    # Split: use 80% for training, 20% as ground truth
+    
     train_ratings, test_ratings = sk_split(ratings, test_size=0.2, random_state=42)
 
     users = test_ratings["userId"].unique()
@@ -76,7 +62,6 @@ def evaluate_ranking(
     all_p, all_r, all_f1 = [], [], []
 
     for uid in users:
-        # Ground truth: movies user rated highly in test set
         user_test = test_ratings[
             (test_ratings["userId"] == uid) & (test_ratings["rating"] >= relevance_threshold)
         ]
@@ -117,9 +102,7 @@ def evaluate_ranking(
 
 
 def full_evaluation_report(cf, cb, hybrid, ratings, movies, k=10) -> pd.DataFrame:
-    """
-    Run complete evaluation for all three models and return a summary DataFrame.
-    """
+    
     print("Evaluating CF (RMSE/MAE)...")
     cf_rating = evaluate_cf_model(cf, ratings)
 

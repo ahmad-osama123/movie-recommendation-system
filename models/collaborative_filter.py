@@ -1,7 +1,4 @@
-"""
-Collaborative Filtering Module
-Uses SVD (Matrix Factorization) via scipy — compatible with NumPy 2.x.
-"""
+
 
 import pandas as pd
 import numpy as np
