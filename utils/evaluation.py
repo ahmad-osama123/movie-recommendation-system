@@ -145,7 +145,7 @@ def full_evaluation_report(cf, cb, hybrid, ratings, movies, k=10) -> pd.DataFram
 
 
 if __name__ == "__main__":
-    from data_processing import load_data, preprocess_movies, preprocess_ratings
+    from utils.data_processing import load_data, preprocess_movies, preprocess_ratings
     from models.content_based import ContentBasedFilter
     from models.collaborative_filter import CollaborativeFilter
     from models.hybrid_recommender import HybridRecommender
