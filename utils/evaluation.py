@@ -163,3 +163,5 @@ if __name__ == "__main__":
     report = full_evaluation_report(cf, cb, hybrid, ratings, movies, k=10)
     print("\n=== Full Evaluation Report ===")
     print(report.to_string(index=False))
+
+# python -m utils.evaluation (run in terminal to execute full evaluation)
