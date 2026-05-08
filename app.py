@@ -1,4 +1,7 @@
 """
+git add .
+git commit -m "Final fix for import paths and evaluation logic"
+git push origin main
 Hybrid Movie Recommendation System — Streamlit App
 Run with: streamlit run app.py
 """

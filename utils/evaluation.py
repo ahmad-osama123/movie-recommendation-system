@@ -164,4 +164,4 @@ if __name__ == "__main__":
     print("\n=== Full Evaluation Report ===")
     print(report.to_string(index=False))
 
-# python -m utils.evaluation (run in terminal to execute full evaluation)
+# python -m utils.evaluation (run this file directly to see the evaluation report)
